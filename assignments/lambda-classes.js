@@ -23,7 +23,7 @@ class Instructor extends Person {
         let randomNum = Math.floor(Math.random()*100);
         let PlusOrMinus = Math.random() < 0.5 ? -1 : 1 ;
         let finalgrade= Student.grade - (randomNum * PlusOrMinus);
-        console.log(`${this.name} just gave ${Student.name}'s ${finalgrade}`)
+        console.log(`${this.name} just gave ${Student.name} ${finalgrade} points`)
     };
 }
 
@@ -127,3 +127,4 @@ const terrence = new Instructor({
   christie.standUP("web19");
   christie.debugCodes(linda, "Redux");
   kerry.Graduate();
+  terrence.scoring(kerry);
