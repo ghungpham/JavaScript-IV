@@ -19,6 +19,12 @@ class Instructor extends Person {
     }
     demo(subject){console.log(`Today we are learning about ${subject}`)};
     grade(Student, subject){console.log(`${Student.name} receives a perfect score on ${subject}`)};
+    scoring(Student){
+        let randomNum = Math.floor(Math.random()*100);
+        let PlusOrMinus = Math.random() < 0.5 ? -1 : 1 ;
+        let finalgrade= Student.grade - (randomNum * PlusOrMinus);
+        console.log(`${this.name} just gave ${Student.name}'s ${finalgrade}`)
+    };
 }
 
 class Student extends Person {
@@ -27,10 +33,12 @@ class Student extends Person {
         this.previousBackground = StudentAttrs.previousBackground;
         this.className = StudentAttrs.className;
         this.favSubjects = StudentAttrs.favSubjects;
+        this.grade = StudentAttrs.grade;
     }
     listsSubjects(){this.favSubjects.forEach(subject =>{console.log(subject);})};
     PRAssignment(subject){console.log(`${this.name} has submitted a PR for ${subject}`)};
     SprintChallenge(subject){console.log(`${this.name} has begun sprint challenge on ${subject}`)};
+    Graduate(){if (this.grade > 70){console.log("Ready to graduate from Lambda School")} else {console.log(`${this.name} needs to go back to improve assignment scores`)} }
 }
 
 class ProjectManager extends Instructor{
@@ -95,6 +103,7 @@ const terrence = new Instructor({
     previousBackground: 'Retail',
     className: 'Underfoot',
     favSubjects: ['Economics', 'Design', 'Comic Books'],
+    grade: 95,
   });
 
   const kerry = new Student({
@@ -105,6 +114,7 @@ const terrence = new Instructor({
     previousBackground: 'Chemistry',
     className: 'KeenSolvers',
     favSubjects: ['Politics', 'Business', 'Cooking'],
+    grade: 70,
   });
 
   terrence.speak();
@@ -116,3 +126,4 @@ const terrence = new Instructor({
   kerry.SprintChallenge("Applied Javascript");
   christie.standUP("web19");
   christie.debugCodes(linda, "Redux");
+  kerry.Graduate();
